@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkin Park - Hybrid Theory</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="header-nav">
+            <script>
+                fetch('/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-nav').innerHTML = data;
+                });
+            </script>
+        </div>
+
+        <main>
+            <section id="article">
+                <div class="article-header">
+                    <img src="/images/Linkin-Park-Hybrid-Theory.jpg" alt="Hybrid Theory">
+                    <div class="article-info">
+                        <h2>ALBUM REVIEW: Linkin Park &ndash; Hybrid Theory</h2>
+                        <p><strong>Release Date:</strong> October 24, 2000</p>
+                        <p><strong>Genres:</strong> Nu Metal, Rap Metal, Alternative Rock, Rap Rock, Alternative Metal</p>
+                        <div class="rating-container">
+                            <p><strong>Rating:</strong></p>
+                            <div class="stars" id="starRating"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-body">
+                    <p>...</p>
+                    
+                    <h3>Tracklist</h3>
+                    <ol>
+                        
+                            <li>Papercut</li>
+                        
+                            <li>One Step Closer</li>
+                        
+                            <li>With You</li>
+                        
+                            <li>Points of Authority</li>
+                        
+                            <li>Crawling</li>
+                        
+                            <li>Runaway</li>
+                        
+                            <li>By Myself</li>
+                        
+                            <li>In the End</li>
+                        
+                            <li>A Place for My Head</li>
+                        
+                            <li>Forgotten</li>
+                        
+                            <li>Cure for the Itch</li>
+                        
+                            <li>Pushing Me Away</li>
+                        
+                    </ol>
+
+                    <div class="images">
+                        <a href="https://open.spotify.com/album/2pKw6GERJVAD61449B1EEM" target="_blank">
+                            <img src="/images/Spotify.png" alt="Listen on Spotify" width="50">
+                        </a><a href="https://music.apple.com/us/album/hybrid-theory/528436018" target="_blank">
+                            <img src="/images/Apple Music.png" alt="Listen on Apple Music" width="50">
+                        </a>
+                    </div>
+
+                    <div class="article-date">
+                        <p>Posted on September 24, 2024 by Artop Malimo</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 SoundOfCore. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setStarRating(10);
+        };
+    </script>
+</body>
+</html>

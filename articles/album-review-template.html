@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{artist_name}} - {{ album_title }}</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="header-nav">
+            <script>
+                fetch('/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-nav').innerHTML = data;
+                });
+            </script>
+        </div>
+
+        <main>
+            <section id="article">
+                <div class="article-header">
+                    <img src="{{ album_cover }}" alt="{{ album_title }}">
+                    <div class="article-info">
+                        <h2>ALBUM REVIEW: {{ artist_name }} &ndash; {{ album_title }}</h2>
+                        <p><strong>Release Date:</strong> {{ release_date }}</p>
+                        <p><strong>Genres:</strong> {{ genres }}</p>
+                        <div class="rating-container">
+                            <p><strong>Rating:</strong></p>
+                            <div class="stars" id="starRating"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-body">
+                    {{ content | safe }}
+                    
+                    <h3>Tracklist</h3>
+                    <ol>
+                        {% for track in tracklist %}
+                            <li>{{ track }}</li>
+                        {% endfor %}
+                    </ol>
+
+                    <div class="images">
+                        <a href="{{ spotify_link }}" target="_blank">
+                            <img src="/images/Spotify.png" alt="Listen on Spotify" width="50">
+                        </a><a href="{{ apple_music_link }}" target="_blank">
+                            <img src="/images/Apple Music.png" alt="Listen on Apple Music" width="50">
+                        </a>
+                    </div>
+
+                    <div class="article-date">
+                        <p>Posted on {{ post_date }} by {{ author }}</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 SoundOfCore. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setStarRating({{ rating }});
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - SoundOfCore</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="header-nav"></div>
+
+        <script>
+            // Fetch and inject the content of nav.html
+            fetch('/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-nav').innerHTML = data;
+                });
+        </script>
+
+        <main>
+            <section id="articles">
+                <!-- Articles will be dynamically loaded here -->
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 SoundOfCore. All rights reserved.</p>
+        </footer>
+
+        <script>
+            // List of article files (with paths)
+            const articles = [
+                'articles/bring-me-the-horizon-post-human-nex-gen.html',
+                'articles/linkin-park-hybrid-theory.html'
+                // Add more articles as needed
+            ];
+
+            // Function to load headers dynamically
+            async function loadArticleHeaders() {
+                const container = document.getElementById('articles');
+                
+                for (let i = 0; i < articles.length; i++) {
+                    try {
+                        const response = await fetch(articles[i]);
+                        const data = await response.text();
+                        
+                        // Parse the article HTML and extract the image and h2 title
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(data, 'text/html');
+                        const articleHeader = doc.querySelector('.article-header');  // Extract header from article
+                        const image = articleHeader.querySelector('img').src; // Get the image src
+                        const title = articleHeader.querySelector('h2').textContent; // Get the title text
+                        
+                        // Create an anchor tag that wraps the header
+                        const anchor = document.createElement('a');
+                        anchor.href = articles[i];  // Set the link to the article page
+                        anchor.classList.add('article-link');
+
+                        // Create a new div to hold the image and title
+                        const articlePreview = document.createElement('div');
+                        articlePreview.classList.add('article-preview');
+
+                        // Create and add the image element
+                        const img = document.createElement('img');
+                        img.src = image;
+                        img.alt = title;
+                        img.classList.add('article-image');
+
+                        // Create and add the title element
+                        const articleTitle = document.createElement('h2');
+                        articleTitle.textContent = title;
+                        articleTitle.classList.add('article-title');
+
+                        // Append image and title to the article preview div
+                        articlePreview.appendChild(img);
+                        articlePreview.appendChild(articleTitle);
+
+                        // Append the article preview to the anchor tag
+                        anchor.appendChild(articlePreview);
+
+                        // Append the anchor tag to the main container
+                        container.appendChild(anchor);
+                    } catch (error) {
+                        console.error('Error fetching article header:', error);
+                    }
+                }
+            }
+
+            // Load the article headers on page load
+            window.onload = loadArticleHeaders;
+        </script>
+    </div>
+</body>
+</html>

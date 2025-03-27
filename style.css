@@ -1,0 +1,156 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: 'Rheinmetall';
+    src: url('fonts/1952 RHEINMETALL.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    min-width: 800px;
+    padding: 0;
+}
+
+main {
+    font-size: 1rem;
+    text-align: center;
+    background: linear-gradient(to bottom, white, darkgray);
+    padding: 0px 0px 10px 0px;
+}
+
+header {
+    background: radial-gradient(circle, rgb(223, 222, 222), rgb(146, 146, 146) 100%);
+    padding: 30px 10px;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-family: 'Rheinmetall', sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px 10px;
+    box-sizing: border-box;
+}
+
+#articles .article-preview .article-image {
+    width: 200px;
+    height: auto;
+    padding: 0px;
+}
+
+.article-header {
+    display: flex;
+    gap: 10px;
+}
+
+.article-header img {
+    width: 300px;
+    height: auto;
+    padding: 10px;
+}
+
+.article-body {
+    text-align: left;
+    padding: 0px 20px
+}
+
+footer {
+    min-width: 780px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 10px 0;
+    background: #222;
+    color: white;
+    box-sizing: border-box;
+    margin: 0 auto;
+    
+}
+
+nav {
+    max-width: 1200px;
+    background-color: black;
+    text-align: center;
+    padding: 10px 0;
+    min-width: 780px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+nav ul {
+    font-family: 'Rheinmetall', sans-serif;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff6347;
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        padding: 0 10px;
+    }
+    .article-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .article-header img {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+.star {
+    font-size: 16.7px;
+    color: #ff6347; /* For empty stars */
+}
+
+.star.full {
+    font-size: 20px;
+    color: #ff6347; /* For filled stars */
+}
+
+#starRating {
+    display: inline-block; /* Keeps it inline with the rating text */
+    vertical-align: middle; /* Aligns the stars vertically */
+}
+
+.rating-container p {
+    margin-top: 5px;  /* Reduce space above the paragraph */
+    margin-bottom: 5px; /* Reduce space below the paragraph */
+}
+
+.images a {
+    text-decoration: none;
+    color: inherit;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link same CSS file -->
+</head>
+<body>
+    <div class="container">
+        <div id="nav-placeholder"></div>
+
+        <script>
+            fetch("nav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("nav-placeholder").innerHTML = data;
+            });
+        </script>
+
+        <main>
+            <section>
+                <h2>Rankings</h2>
+                <p>This is the About page with more details.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 My Website. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
