@@ -1,31 +1,22 @@
 from jinja2 import Environment, FileSystemLoader
 import os
+from dotenv import load_dotenv
+from supabase import create_client, Client
+from datetime import datetime
+
+load_dotenv()
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+response = supabase.table("album_full_data").select("*").execute()
+albums = response.data if response.data else []
 
 # Load the template
 env = Environment(loader=FileSystemLoader('.'))
-template = env.get_template('/articles/album-review-template.html')  # Adjust the path as needed
-
-# List of album data
-albums = [
-    {
-        "artist_name": "Linkin Park",
-        "album_title": "Hybrid Theory",
-        "release_date": "October 24, 2000",
-        "genres": "Nu Metal, Rap Metal, Alternative Rock, Rap Rock, Alternative Metal",
-        "album_cover": "/images/Linkin-Park-Hybrid-Theory.jpg",
-        "rating": 10,
-        "content": "<p>...</p>",  # Full content here
-        "tracklist": [
-            "Papercut", "One Step Closer", "With You", "Points of Authority", 
-            "Crawling", "Runaway", "By Myself", "In the End", 
-            "A Place for My Head", "Forgotten", "Cure for the Itch", "Pushing Me Away"
-        ],
-        "spotify_link": "https://open.spotify.com/album/2pKw6GERJVAD61449B1EEM",
-        "apple_music_link": "https://music.apple.com/us/album/hybrid-theory/528436018",
-        "post_date": "September 24, 2024",
-        "author": "Artop Malimo"
-    }
-]
+template = env.get_template('/articles/album-review-template.html')  # Adjust as needed
 
 # Ensure the directory exists
 os.makedirs('articles', exist_ok=True)
@@ -33,6 +24,9 @@ os.makedirs('articles', exist_ok=True)
 # Loop through the albums and generate the pages
 for album in albums:
     # Render the HTML content
+    album["post_date"] = datetime.strptime(album["post_date"], "%Y-%m-%d").date()
+    album["release_date"] = datetime.strptime(album["release_date"], "%Y-%m-%d").date()
+
     output_html = template.render(album)
 
     # Generate the output file name in the format: artist-title-album-title.html

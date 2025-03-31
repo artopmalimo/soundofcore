@@ -25,8 +25,8 @@
                     <img src="{{ album_cover }}" alt="{{ album_title }}">
                     <div class="article-info">
                         <h2>ALBUM REVIEW: {{ artist_name }} &ndash; {{ album_title }}</h2>
-                        <p><strong>Release Date:</strong> {{ release_date }}</p>
-                        <p><strong>Genres:</strong> {{ genres }}</p>
+                        <p><strong>Release Date:</strong> {{ release_date.strftime('%B %d, %Y') }}</p>
+                        <p><strong>Genres:</strong> {{ all_genres | join(', ') }}</p>
                         <div class="rating-container">
                             <p><strong>Rating:</strong></p>
                             <div class="stars" id="starRating"></div>
@@ -39,7 +39,7 @@
                     
                     <h3>Tracklist</h3>
                     <ol>
-                        {% for track in tracklist %}
+                        {% for track in all_tracks %}
                             <li>{{ track }}</li>
                         {% endfor %}
                     </ol>
@@ -53,7 +53,8 @@
                     </div>
 
                     <div class="article-date">
-                        <p>Posted on {{ post_date }} by {{ author }}</p>
+                        <p>Posted on {{ post_date.strftime('%B %d, %Y') }} by {{ author }}</p>
+
                     </div>
                 </div>
             </section>
